@@ -204,9 +204,9 @@ function App() {
                 exit={{ opacity: 0, y: -20 }}
                 className="flex flex-col items-center"
               >
-                <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm mb-10">
-                  <Sparkles size={14} className="text-violet-500" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Édition Photo par IA de Pro</span>
+                <div className="inline-flex items-center gap-2 bg-violet-50 text-violet-600 px-4 py-2 rounded-full border border-violet-100 mb-10 shadow-sm">
+                  <Zap size={14} className="fill-violet-600" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Mode Ultra-HD (ISNet + Alpha Matting)</span>
                 </div>
 
                 <h1 className="text-6xl md:text-8xl font-[950] tracking-[-0.04em] text-center leading-[0.85] mb-10">

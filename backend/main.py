@@ -21,30 +21,36 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Pre-load the session for faster processing
-session = new_session("u2net")
+# Pre-load the session for high-quality processing
+# isnet-general-use is much more precise than u2net for complex subjects
+model_name = "isnet-general-use"
+session = new_session(model_name)
 
 @app.post("/remove-bg")
 async def remove_background(file: UploadFile = File(...)):
-    # Check file size (optional limit, e.g., 10MB)
-    MAX_SIZE = 10 * 1024 * 1024  # 10MB
+    # Check file size (increased to 20MB for high-res source images)
+    MAX_SIZE = 20 * 1024 * 1024  
     
     try:
         # Read the image file
         content = await file.read()
         
         if len(content) > MAX_SIZE:
-            raise HTTPException(status_code=413, detail="File too large. Maximum size is 10MB.")
+            raise HTTPException(status_code=413, detail="File too large. Maximum size is 20MB.")
 
-        # Open image with PIL to verify it's an image
-        input_image = Image.open(io.BytesIO(content))
-        
         # Performance logging
-        logger.info(f"Processing image: {file.filename} ({input_image.size})")
+        logger.info(f"Processing image: {file.filename}")
 
-        # Use rembg to remove background
-        # Quality is already high by default with u2net
-        output_data = remove(content, session=session)
+        # Use rembg with Advanced Alpha Matting for surgical precision
+        # alpha_matting helps significantly with hair and fuzzy edges
+        output_data = remove(
+            content, 
+            session=session,
+            alpha_matting=True,
+            alpha_matting_foreground_threshold=240,
+            alpha_matting_background_threshold=10,
+            alpha_matting_erode_size=10
+        )
         
         # Return the transparent PNG
         return Response(content=output_data, media_type="image/png")
@@ -57,7 +63,7 @@ async def remove_background(file: UploadFile = File(...)):
 
 @app.get("/")
 async def root():
-    return {"message": "Pro BG Remover API is running", "model": "u2net"}
+    return {"message": "Pro BG Remover API is running", "model": model_name, "mode": "Ultra Quality (Alpha Matting ON)"}
 
 if __name__ == "__main__":
     import uvicorn
