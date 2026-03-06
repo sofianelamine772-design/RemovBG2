@@ -90,14 +90,6 @@ const Pricing = ({ onBack }) => {
     return (
         <div className="max-w-6xl mx-auto py-12 px-6">
             <div className="text-center mb-16">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="inline-flex items-center gap-2 bg-violet-50 text-violet-600 px-4 py-2 rounded-full border border-violet-100 mb-6"
-                >
-                    <Star size={14} className="fill-violet-600" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-violet-600">Tarifs Simples & Transparents</span>
-                </motion.div>
 
                 <h2 className="text-5xl md:text-7xl font-[950] tracking-tight mb-6">
                     Choisissez votre <br />

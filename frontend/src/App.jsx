@@ -27,6 +27,7 @@ import {
 import Pricing from './components/Pricing';
 import TrustSection from './components/TrustSection';
 import ClearBGLogo from './components/ClearBGLogo';
+import ShowcaseSection from './components/ShowcaseSection';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -215,7 +216,6 @@ function App() {
 
           <div className="hidden md:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.15em] text-slate-500">
             <button onClick={() => setCurrentView('studio')} className={`hover:text-violet-600 transition-colors ${currentView === 'studio' ? 'text-violet-600 font-black' : ''}`}>Studio</button>
-            <button className="hover:text-violet-600 transition-colors">Nos Modèles</button>
             <button onClick={() => setCurrentView('pricing')} className={`hover:text-violet-600 transition-colors ${currentView === 'pricing' ? 'text-violet-600 font-black' : ''}`}>Tarifs</button>
           </div>
 
@@ -240,9 +240,15 @@ function App() {
 
                   {/* Left Side: Conversion-focused copy */}
                   <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 bg-violet-50 text-violet-600 px-5 py-2 rounded-full border border-violet-100 mb-8 animate-bounce-subtle">
-                      <Sparkles size={16} className="fill-violet-600" />
-                      <span className="text-[10px] font-black uppercase tracking-widest">IA de précision professionnelle</span>
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
+                      <div className="inline-flex items-center gap-2 bg-violet-50 text-violet-600 px-5 py-2 rounded-full border border-violet-100 animate-bounce-subtle">
+                        <Sparkles size={16} className="fill-violet-600" />
+                        <span className="text-[10px] font-black uppercase tracking-widest">IA de précision professionnelle</span>
+                      </div>
+                      <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-5 py-2 rounded-full border border-blue-100">
+                        <span className="text-xl">🇫🇷</span>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-blue-800">100% Français</span>
+                      </div>
                     </div>
 
                     <h1 className="text-[54px] md:text-[72px] font-[900] leading-[0.95] tracking-tight mb-8 text-slate-900">
@@ -306,6 +312,9 @@ function App() {
                     </div>
                   </div>
                 </motion.div>
+                <ShowcaseSection />
+
+                <TrustSection />
 
                 {/* 2. Features Grid - Why us? */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
@@ -334,7 +343,59 @@ function App() {
                   ))}
                 </div>
 
-                <TrustSection />
+                {/* New Premium Feature Section */}
+                <div className="bg-gradient-brand rounded-[60px] p-12 md:p-20 text-white relative overflow-hidden shadow-2xl shadow-violet-200">
+                  <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 blur-3xl rounded-full" />
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+                    <div className="flex flex-col gap-8 text-center lg:text-left items-center lg:items-start">
+                      <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 w-fit">
+                        <Zap size={16} className="fill-white" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-white">Offre Premium exclusive</span>
+                      </div>
+                      <h2 className="text-4xl md:text-5xl font-[950] leading-tight">
+                        Un Panel de Contrôle <br />
+                        <span className="opacity-70 font-black italic">Pour les Pros.</span>
+                      </h2>
+                      <p className="text-white/80 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
+                        Accédez à notre interface avancée <span className="text-white font-black italic underline decoration-2 underline-offset-4">ClearBG Studio</span>. Détourez des milliers d'images sans limite, avec une gestion par dossiers et un historique complet.
+                      </p>
+                      <ul className="space-y-4 text-left">
+                        {[
+                          "Vitesse de traitement x10",
+                          "Retouches manuelles ultra-précises",
+                          "Exportation en très haute résolution (HD)",
+                          "Traitement illimité par lots"
+                        ].map((item, i) => (
+                          <li key={i} className="flex items-center gap-4 text-sm md:text-lg font-bold">
+                            <CheckCircle2 size={24} className="text-white shrink-0" /> {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="relative group hidden md:block">
+                      <div className="absolute -inset-4 bg-white/10 blur-2xl rounded-full scale-0 group-hover:scale-100 transition-transform duration-700" />
+                      <div className="bg-white/10 backdrop-blur-2xl p-4 rounded-[40px] border border-white/20 shadow-inner">
+                        <div className="bg-slate-900 rounded-[30px] aspect-video flex items-center justify-center p-12 overflow-hidden border border-white/10">
+                          {/* Simulate a Studio interface display */}
+                          <div className="w-full h-full border border-white/10 rounded-2xl p-6 flex gap-6 bg-slate-800/50">
+                            <div className="w-[60px] h-full bg-white/5 rounded-xl flex flex-col gap-4 p-2">
+                              <div className="w-full aspect-square bg-violet-600 rounded-lg animate-pulse" />
+                              <div className="w-full aspect-square bg-white/5 rounded-lg" />
+                              <div className="w-full aspect-square bg-white/5 rounded-lg" />
+                            </div>
+                            <div className="flex-1 h-full bg-white/5 rounded-xl flex items-center justify-center relative overflow-hidden border border-white/5">
+                              <div className="absolute inset-0 transparency-grid opacity-10" />
+                              <Sparkles size={64} className="text-violet-400 opacity-30 animate-pulse relative z-10" />
+                              <div className="absolute bottom-6 left-6 right-6 h-3 bg-white/5 rounded-full overflow-hidden border border-white/5">
+                                <div className="w-3/4 h-full bg-violet-600 animate-pulse shadow-[0_0_15px_rgba(124,58,237,0.5)]" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 {/* 3. Final CTA */}
                 <div className="bg-slate-900 rounded-[60px] p-20 text-center relative overflow-hidden group">
@@ -483,7 +544,6 @@ function App() {
                   </div>
                 </div>
 
-                <TrustSection />
               </motion.div>
             )}
           </AnimatePresence>
@@ -547,12 +607,18 @@ function App() {
                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">Conformité RGPD</span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-4 mt-2 opacity-50 hover:opacity-100 transition-opacity">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" className="h-4 object-contain brightness-0 invert" alt="Visa" />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" className="h-5 object-contain" alt="Mastercard" />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" className="h-5 object-contain brightness-0 invert" alt="Amex" />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" className="h-6 object-contain brightness-0 invert" alt="Apple Pay" />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" className="h-6 object-contain brightness-0 invert" alt="Stripe" />
+                <div className="flex flex-wrap items-center gap-3 mt-4">
+                  {[
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg", alt: "Mastercard" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/512px-American_Express_logo_%282018%29.svg.png", alt: "Amex" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg", alt: "Apple Pay" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Google_Pay_Logo.svg", alt: "Google Pay" },
+                    { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/UnionPay_logo.svg/512px-UnionPay_logo.svg.png", alt: "UnionPay" }
+                  ].map((card, i) => (
+                    <div key={i} className="bg-white px-2 py-1.5 rounded-lg flex items-center justify-center h-8 w-12 shadow-sm hover:scale-110 transition-transform cursor-pointer">
+                      <img src={card.src} className="max-h-full max-w-full object-contain" alt={card.alt} />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -561,6 +627,10 @@ function App() {
           <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
               <p>© {new Date().getFullYear()} ClearBG PRO — Tous droits réservés.</p>
+              <div className="flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+                <span className="text-lg">🇫🇷</span>
+                <span className="text-white hover:text-blue-400 transition-colors">Fait en France</span>
+              </div>
               <div className="flex gap-10">
                 <a href="#" className="hover:text-white">Confidentialité</a>
                 <a href="#" className="hover:text-white">CGU</a>
