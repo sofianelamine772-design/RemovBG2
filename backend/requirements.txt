@@ -5,3 +5,4 @@ rembg[cpu]
 python-multipart
 pillow
 numpy
+stripe
